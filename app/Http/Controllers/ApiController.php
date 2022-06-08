@@ -58,6 +58,18 @@ class ApiController extends Controller
           ], 404);
       }
     }
+
+    public function validarEmail($id){
+      if (Empresa::where('id', $id)->exists()){
+        $empresa = Empresa::find($id);
+        $empresa->Conta_Valida = 1;
+        $empresa->save();
+
+        return response()->json([
+          "mensagem" => "Empresa validada com sucesso"
+      ], 200);
+      }
+    }
   
     public function deleteEmpresa ($id) {
       if(Empresa::where('id', $id)->exists()) {
@@ -143,9 +155,7 @@ class ApiController extends Controller
       if (Empresa::where('id', $id)->exists()){
         $empresa = Empresa::where('id', $id)->first();
         if($empresa->Saldo > 0.00 && $empresa->Conta_Valida == 1){
-          return response()->json([
-            "mensagem" => "Saldo disponivel"
-          ], 202);
+          //pagamento começa a ser processado
         }else{
           return response()->json([
             "mensagem" => "Saldo indisponivel"

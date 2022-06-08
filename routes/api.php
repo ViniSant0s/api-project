@@ -20,16 +20,20 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('/empresa', [ApiController::class, 'createEmpresa']);
-Route::get('/empresa/all', [ApiController::class, 'getAllEmpresas']);
-Route::get('/empresa/{id}', [ApiController::class, 'getEmpresa']);
-Route::put('/empresa/edit/{id}', [ApiController::class, 'updateEmpresa']);
-Route::delete('/empresa/delete/{id}', [ApiController::class, 'deleteEmpresa']);
+Route::prefix('/empresa')->group(function () {
+    Route::post('/', [ApiController::class, 'createEmpresa']);
+    Route::get('/all', [ApiController::class, 'getAllEmpresas']);
+    Route::get('/{id}', [ApiController::class, 'getEmpresa']);
+    Route::put('/edit/{id}', [ApiController::class, 'updateEmpresa']);
+    Route::delete('/delete/{id}', [ApiController::class, 'deleteEmpresa']);
+    Route::put('/validar/{id}', [ApiController::class, 'validarEmail']);
+});
 
-Route::post('/admin', [ApiController::class, 'createAdmin']);
-Route::get('/admin/all', [ApiController::class, 'getAllAdmins']);
-Route::get('/admin/{id}', [ApiController::class, 'getAdmin']);
-Route::put('/admin/edit/{id}', [ApiController::class, 'updateAdmin']);
-Route::delete('/admin/delete/{id}', [ApiController::class, 'deleteAdmin']);
-
-Route::post('/admin/saque/{id}', [ApiController::class, 'solicitarSaque']);
+Route::prefix('/admin')->group(function () {
+    Route::post('/', [ApiController::class, 'createAdmin']);
+    Route::get('/all', [ApiController::class, 'getAllAdmins']);
+    Route::get('/{id}', [ApiController::class, 'getAdmin']);
+    Route::put('/edit/{id}', [ApiController::class, 'updateAdmin']);
+    Route::delete('/delete/{id}', [ApiController::class, 'deleteAdmin']);
+    Route::post('/saque/{id}', [ApiController::class, 'solicitarSaque']);
+});
