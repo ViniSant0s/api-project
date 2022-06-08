@@ -11,5 +11,5 @@ class Empresa extends Model
 
     protected $table = 'Empresas';
 
-    protected $fillable = ['id', 'CNPJ', 'Razão Social', 'Nome fantasia', 'Telefone', 'Email'];
+    protected $fillable = ['id', 'CNPJ', 'Razao_Social', 'Nome_fantasia', 'Telefone', 'Email', 'Conta_Valida', 'Saldo'];
 }

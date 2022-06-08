@@ -16,10 +16,12 @@ return new class extends Migration
         Schema::create('empresas', function (Blueprint $table) {
             $table->increments('id');
             $table->string('CNPJ')->unique();
-            $table->string('Razão Social');
-            $table->string('Nome fantasia');
+            $table->string('Razao_Social');
+            $table->string('Nome_fantasia');
             $table->string('Telefone');
             $table->string('Email')->unique();
+            $table->boolean('Conta_Valida')->default(false);
+            $table->float('Saldo', 8, 2)->default(0.0);;
             $table->timestamps();
         });
     }

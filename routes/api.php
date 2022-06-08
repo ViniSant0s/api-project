@@ -3,6 +3,8 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\ApiController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -18,8 +20,16 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-//Route::post('/empresa', [app\Http\Controllers\ApiController::class, 'createEmpresa']);
-//Route::get('/empresa/{id}', [app\Http\Controllers\ApiController::class, 'getEmpresa']);
-//Route::get('/empresa/all', [App\Http\Controllers\ApiController::class, 'getAllEmpresas']);
+Route::post('/empresa', [ApiController::class, 'createEmpresa']);
+Route::get('/empresa/all', [ApiController::class, 'getAllEmpresas']);
+Route::get('/empresa/{id}', [ApiController::class, 'getEmpresa']);
+Route::put('/empresa/edit/{id}', [ApiController::class, 'updateEmpresa']);
+Route::delete('/empresa/delete/{id}', [ApiController::class, 'deleteEmpresa']);
 
-Route::get('/empresa/all', 'app\Http\Controllers\ApiController@getAllEmpresas');
+Route::post('/admin', [ApiController::class, 'createAdmin']);
+Route::get('/admin/all', [ApiController::class, 'getAllAdmins']);
+Route::get('/admin/{id}', [ApiController::class, 'getAdmin']);
+Route::put('/admin/edit/{id}', [ApiController::class, 'updateAdmin']);
+Route::delete('/admin/delete/{id}', [ApiController::class, 'deleteAdmin']);
+
+Route::post('/admin/saque/{id}', [ApiController::class, 'solicitarSaque']);
