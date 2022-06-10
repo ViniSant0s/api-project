@@ -11,6 +11,7 @@ Necessário instalar o framework Laravel. Faça o download [aqui](https://larave
 <li>Para popular o banco de dados por meio das sementes, execute o comando php artisan db:seed;<li>
 <li>Para rodar o servidor Laravel, execute o comando php artisan servena pasta do projeto.<li>
 <ol>
+
 Para usar uma saída da API, é recomendado o [Postman](https://www.postman.com/) junto com o [Postman-Agent](https://www.postman.com/downloads/postman-agent/) caso não esteja usando localhost. Ou utilizamos uma API Client de sua preferência.
 
 [Documentação-da-API]
