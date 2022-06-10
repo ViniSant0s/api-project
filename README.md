@@ -15,4 +15,4 @@ Necessário instalar o framework Laravel. Faça o download [aqui](https://larave
 
 Para usar uma saída da API, é recomendado o [Postman](https://www.postman.com/) junto com o [Postman-Agent](https://www.postman.com/downloads/postman-agent/) caso não esteja usando localhost. Ou utilizamos uma API Client de sua preferência.
 
-[Documentação-da-API]
+[Documentação-da-API](https://documenter.getpostman.com/view/21247765/Uz5MFtnd).
