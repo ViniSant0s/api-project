@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 use App\Models\Empresa;
 use App\Models\Admin;
+use App\Models\Pagamento;
+
 class ApiController extends Controller
 {
     public function getAllEmpresas() {
@@ -150,12 +152,26 @@ class ApiController extends Controller
         }
     }
 
+    public function alterarSaldo(Request $request, $id){
+      if (Empresa::where('id', $id)->exists()){
+        $empresa = Empresa::find($id);
+        $empresa->Saldo = $request->saldo;
+        $empresa->save();
+
+        return response()->json([
+          "mensagem" => "Saldo atualizado com sucesso!"
+      ], 200);
+      }
+    }
+
     public function solicitarSaque(Request $request, $id){
 
       if (Empresa::where('id', $id)->exists()){
         $empresa = Empresa::where('id', $id)->first();
         if($empresa->Saldo > 0.00 && $empresa->Conta_Valida == 1){
-          //pagamento começa a ser processado
+          $pagamento = new Pagamento();
+          $pagamento->Valor = $request->valor;
+          $pagamento->save();
         }else{
           return response()->json([
             "mensagem" => "Saldo indisponivel"
